@@ -12,5 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
+Route::get('login', 'View\MemberController@goLogin');
+Route::get('register', 'View\MemberController@goRegister');
+
+Route::get('service/validate_code/create', 'Service\ValidateController@create');
+Route::get('service/validate_phone/send', 'Service\ValidateController@sendSMS');
