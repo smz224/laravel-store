@@ -1,12 +1,14 @@
-<?php 
-	
-	namespace App\Models;
+<?php
 
-	class M3Result {
-		public $status;
-		public $message;
+namespace App\Models;
 
-		public function toJson () {
-			return json_encode($this, JSON_UNESCAPED_UNICODE);
-		}
-	}
+class M3Result
+{
+  public $status;
+  public $message;
+
+  public function toJson()
+  {
+    return json_encode($this, JSON_UNESCAPED_UNICODE);
+  }
+}

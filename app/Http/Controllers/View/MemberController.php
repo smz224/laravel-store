@@ -7,11 +7,13 @@ use App\Http\Controllers\Controller;
 
 class MemberController extends Controller
 {
-    public function goLogin () {
-    	return view('login');
-    }
+  public function goLogin()
+  {
+    return view('login');
+  }
 
-    public function goRegister () {
-    	return view('register');
-    }
+  public function goRegister()
+  {
+    return view('register');
+  }
 }
