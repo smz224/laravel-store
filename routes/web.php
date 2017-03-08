@@ -19,3 +19,8 @@ Route::get('register', 'View\MemberController@goRegister');
 
 Route::get('service/validate_code/create', 'Service\ValidateController@create');
 Route::get('service/validate_phone/send', 'Service\ValidateController@sendSMS');
+Route::post('service/register', 'Service\MemberController@register');
+
+Route::get('test', function () {
+    return dd(App\Models\TampPhone::where('phone', '15626179313')->first()->delete());
+});

@@ -213,8 +213,11 @@
           url: '/service/register',
           dataType: 'json',
           cache: false,
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
           data: {phone: phone, email: email, password: password, confirm: confirm,
-            phone_code: phone_code, validate_code: validate_code, _token: "{{csrf_token()}}"},
+            phone_code: phone_code, validate_code: validate_code},
           success: function(data) {
             if(data == null) {
               $('.bk_toptips').show();
