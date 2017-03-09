@@ -17,9 +17,21 @@
 	<!-- tooltips -->
 	<div class="bk_toptips"><span></span></div>
 
-	<div id="global_menu" onclick="onMenuClick();">
-	  <div></div>
-	</div>
+	{{--<div id="global_menu" onclick="onMenuClick();">--}}
+	  {{--<div></div>--}}
+	{{--</div>--}}
+
+  <div class="bk_title clearfix">
+    <div class="bk_back">
+      <span class="icon-arrow-back" onclick="history.go(-1)"></span>
+    </div>
+    <div class="bk_more" onclick="onMenuClick()">
+      <span class="icon-more_horiz"></span>
+    </div>
+    <div class="bk_title_content">
+      <span>{{ $title }}</span>
+    </div>
+  </div>
 
 	<!--BEGIN actionSheet-->
 	<div id="actionSheet_wrap">
@@ -79,7 +91,7 @@
 		  }
 		}
 	</script>
-	
+
 	@yield('my-js')
 </body>
 </html>

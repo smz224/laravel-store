@@ -9,11 +9,15 @@ class MemberController extends Controller
 {
   public function goLogin()
   {
-    return view('login');
+    return view('login', [
+      'title' => '登录'
+    ]);
   }
 
   public function goRegister()
   {
-    return view('register');
+    return view('register', [
+      'title' => '注册'
+    ]);
   }
 }

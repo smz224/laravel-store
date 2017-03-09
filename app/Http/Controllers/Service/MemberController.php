@@ -169,8 +169,9 @@ class MemberController extends Controller
     }
 
     if (md5($password) == $member->password) {
-      $request->session()->put('isLogin', true);
-      $request->session()->put('user', $member);
+      $request->session()->put('is_login', true);
+      $request->session()->put('member', $member);
+
       $m3_result->status = 0;
       $m3_result->message = 'success';
       return $m3_result->toJson();

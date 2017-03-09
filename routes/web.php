@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-  return view('login');
+  return view('login', ['title' => '登录']);
 });
 
 Route::group(['prefix' => '/'], function () {
