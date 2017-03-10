@@ -23,7 +23,7 @@
 
   <div class="bk_title clearfix">
     <div class="bk_back">
-      <span class="icon-arrow-back" onclick="history.go(-1)"></span>
+      <span class="icon-arrow_back" onclick="self.location=document.referrer;"></span>
     </div>
     <div class="bk_more" onclick="onMenuClick()">
       <span class="icon-more_horiz"></span>
@@ -51,6 +51,7 @@
 
 	<script type="text/javascript" src="/js/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript">
+
 		function hideActionSheet(weuiActionsheet, mask) {
 		    weuiActionsheet.removeClass('weui_actionsheet_toggle');
 		    mask.removeClass('weui_fade_toggle');

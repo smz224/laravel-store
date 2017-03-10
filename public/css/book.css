@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('../fonts/icomoon.eot?yn7253');
-  src:  url('../fonts/icomoon.eot?yn7253#iefix') format('embedded-opentype'),
-  url('../fonts/icomoon.ttf?yn7253') format('truetype'),
-  url('../fonts/icomoon.woff?yn7253') format('woff'),
-  url('../fonts/icomoon.svg?yn7253#icomoon') format('svg');
+  src:  url('../fonts/icomoon.eot?mm0gt1');
+  src:  url('../fonts/icomoon.eot?mm0gt1#iefix') format('embedded-opentype'),
+  url('../fonts/icomoon.ttf?mm0gt1') format('truetype'),
+  url('../fonts/icomoon.woff?mm0gt1') format('woff'),
+  url('../fonts/icomoon.svg?mm0gt1#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,12 +24,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-arrow-back:before {
+.icon-more_horiz:before {
   content: "\e901";
 }
-.icon-more_horiz:before {
+.icon-arrow_back:before {
   content: "\e900";
 }
+
+
 
 .clearfix {
   zoom: 1;
@@ -179,4 +181,40 @@ body,html{height:100%;-webkit-tap-highlight-color:transparent}
   font-size: 28px;
   color: #eee;
 }
+
+
+.bk_title_1 {
+  font-size: 18px;
+  color: #000;
+}
+.bk_summary {
+  font-size: 16px;
+  color: #888;
+}
+.bk_price {
+  font-size: 16px;
+  color: #CD4A4A;
+}
+.bk_time {
+  font-size: 14px;
+  color: #444;
+}
+.bk_important {
+  font-size: 16px;
+  color: #3CC51F;
+}
+.bk_preview {
+  width: 90px;
+  height: 90px;
+  margin-right: 10px;
+}
+.bk_icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.bk_fix_bottom {position: fixed; bottom: 0; width: 100%; background-color: #eeeeee;}
+.bk_half_area {width: 45%; padding: 5px 2%; display: inline-block;}
+.bk_btn_area {width: 96%; padding: 5px 2%; display: inline-block;}
 
