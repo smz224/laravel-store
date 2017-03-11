@@ -23,7 +23,7 @@
 
   <div class="bk_title clearfix">
     <div class="bk_back">
-      <span class="icon-arrow_back" onclick="self.location=document.referrer;"></span>
+      <span class="icon-arrow_back" onclick="_goBack()"></span>
     </div>
     <div class="bk_more" onclick="onMenuClick()">
       <span class="icon-more_horiz"></span>
@@ -91,6 +91,16 @@
 		    setTimeout(function() {$('.bk_toptips').hide();}, 2000);
 		  }
 		}
+
+		function _goBack() {
+      if (location.pathname == "/category") {
+        console.log(1);
+        location.replace(document.referrer)
+      } else {
+        console.log(2);
+        history.go(-1)
+      }
+    }
 	</script>
 
 	@yield('my-js')

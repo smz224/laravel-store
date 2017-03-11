@@ -6,6 +6,8 @@ use Illuminate\Routing\Controller;
 use App\Models\Products;
 use App\Models\PdtContents;
 use Illuminate\Support\Facades\DB;
+use App\Models\PdtImages;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -17,7 +19,7 @@ class ProductController extends Controller
     ]);
   }
 
-  public function getDetail ($product_id)
+  public function getDetail (Request $request, $product_id)
   {
     $detail = DB::table('products as t1')
       ->rightjoin('pdt_contents as t2', 't1.id', '=', 't2.product_id')
@@ -25,9 +27,29 @@ class ProductController extends Controller
       ->where('t2.product_id', $product_id)
       ->first();
 
+    $bk_cart = $request->cookie('bk_cart');
+    $bk_cart_arr = ($bk_cart != null ? explode(',', $bk_cart) : array());
+
+    $count = 0;
+    foreach($bk_cart_arr as $value) {
+      $index = strpos($value, ':');
+      if (substr($value, 0, $index) == $product_id) {
+        $count = ((int) substr($value, $index + 1));
+        break;
+      }
+    }
+
+    $pdt_images = PdtImages::where('product_id', $product_id)->get();
+
+    if (!$detail) {
+      $detail = Products::where('id', $product_id)->first();
+    }
+
     return view('pdt_content', [
       'title' => $detail->name,
-      'detail' => $detail
+      'detail' => $detail,
+      'pdt_images' => $pdt_images,
+      'count' => $count
     ]);
   }
 }

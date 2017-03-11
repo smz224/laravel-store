@@ -21,6 +21,7 @@ Route::group(['prefix' => '/'], function () {
   Route::get('category', 'View\CategoryController@index');
   Route::get('product/category_id/{category_id}', 'View\ProductController@index');
   Route::get('product/{product_id}', 'View\ProductController@getDetail');
+  Route::get('cart', 'View\CartController@index');
 });
 
 Route::group(['prefix' => 'service'], function () {
@@ -30,4 +31,5 @@ Route::group(['prefix' => 'service'], function () {
   Route::post('login', 'Service\MemberController@login');
   Route::post('register', 'Service\MemberController@register');
   Route::get('category/parent_id/{id}', 'Service\CategoryController@getCategorys');
+  Route::get('cart/add/{product_id}', 'Service\CartController@addCart');
 });
