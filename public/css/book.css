@@ -31,7 +31,9 @@
   content: "\e900";
 }
 
-
+.logout {
+  color: red;
+}
 
 .clearfix {
   zoom: 1;

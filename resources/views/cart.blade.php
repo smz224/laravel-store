@@ -6,18 +6,18 @@
   <div class="page bk_content" style="top: 0;">
     <div class="weui_cells weui_cells_checkbox">
       @foreach($cart_items as $cart_item)
-        <label class="weui_cell weui_check_label" for="{{$cart_item->product->id}}">
+        <label class="weui_cell weui_check_label" for="{{$cart_item->product_id}}">
           <div class="weui_cell_hd" style="width: 23px;">
-            <input type="checkbox" class="weui_check" name="cart_item" id="{{$cart_item->product->id}}" checked="checked">
+            <input type="checkbox" class="weui_check" name="cart_item" id="{{$cart_item->product_id}}" checked="checked">
             <i class="weui_icon_checked"></i>
           </div>
           <div class="weui_cell_bd weui_cell_primary">
             <div style="position: relative;">
-              <img class="bk_preview" src="{{$cart_item->product->preview}}" class="m3_preview" onclick="_toProduct({{$cart_item->product->id}});"/>
+              <img class="bk_preview" src="{{$cart_item->preview}}" class="m3_preview" onclick="_toProduct({{$cart_item->product_id}});"/>
               <div style="position: absolute; left: 100px; right: 0; top: 0">
-                <p>{{$cart_item->product->name}}</p>
+                <p>{{$cart_item->name}}</p>
                 <p class="bk_time" style="margin-top: 15px;">数量: <span class="bk_summary">x{{$cart_item->count}}</span></p>
-                <p class="bk_time">总计: <span class="bk_price">￥{{$cart_item->product->price * $cart_item->count}}</span></p>
+                <p class="bk_time">总计: <span class="bk_price">￥{{$cart_item->price * $cart_item->count}}</span></p>
               </div>
             </div>
           </div>
@@ -25,7 +25,7 @@
       @endforeach
     </div>
   </div>
-   <form action="/order_commit" id="order_commit" method="post">
+  <form action="/order_commit" id="order_commit" method="post">
     {{ csrf_field() }}
     <input type="hide" name="product_ids" value="" />
     <input type="hide" name="is_wx" value="" />
@@ -41,4 +41,66 @@
 @stop
 
 @section('my-js')
+  <script>
+    function _onDelete() {
+      var product_ids_arr = []
+      $('input:checkbox[name=cart_item]').each(function (index, el) {
+        if ($(el).is(':checked')) {
+          product_ids_arr.push($(el).attr('id'))
+        }
+      })
+
+      $.ajax({
+        type: 'GET',
+        url: '/service/cart/delete',
+        dataType: 'json',
+        cache: false,
+        data: {
+          'product_ids': product_ids_arr
+        },
+        success: function (data) {
+          if (data == null) {
+            $('.bk_toptips').show();
+            $('.bk_toptips span').html('服务端错误');
+            setTimeout(function () {
+              $('.bk_toptips').hide();
+            }, 2000);
+            return;
+          }
+          if (data.status != 0) {
+            $('.bk_toptips').show();
+            $('.bk_toptips span').html(data.message);
+            setTimeout(function () {
+              $('.bk_toptips').hide();
+            }, 2000);
+            return;
+          }
+
+          $('.bk_toptips').show();
+          $('.bk_toptips span').html(data.message);
+          setTimeout(function () {
+            $('.bk_toptips').hide();
+          }, 2000);
+
+          location.reload()
+        },
+        error: function (xhr, status, error) {
+          console.log(xhr);
+          console.log(status);
+          console.log(error);
+        }
+      })
+    }
+
+    function _toCharge () {
+      var cart_item_ids_arr = []
+      $('input:checkbox[name=cart_item]').each(function (index, el) {
+        if ($(el).is(':checked')) {
+            cart_item_ids_arr.push($(el).attr('id'))
+        }
+      })
+
+      location.href = '/order_pay?cart_item_ids' + cart_item_ids_arr;
+    }
+  </script>
 @stop

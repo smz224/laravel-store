@@ -11,11 +11,12 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-  public function index ($category_id) {
+  public function index (Request $request,$category_id) {
     $products = Products::where('category_id', $category_id)->get();
     return view('product', [
       'title' => '书本列表',
-      'products' => $products
+      'products' => $products,
+      'member'=> $request->session()->get('member', '')
     ]);
   }
 
@@ -49,7 +50,8 @@ class ProductController extends Controller
       'title' => $detail->name,
       'detail' => $detail,
       'pdt_images' => $pdt_images,
-      'count' => $count
+      'count' => $count,
+      'member' => $request->session()->get('member', '')
     ]);
   }
 }

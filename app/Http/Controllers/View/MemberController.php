@@ -7,17 +7,15 @@ use App\Http\Controllers\Controller;
 
 class MemberController extends Controller
 {
-  public function goLogin()
+  public function goLogin(Request $request)
   {
-    return view('login', [
-      'title' => '登录'
-    ]);
+    return view('login')->with('title', '登录')
+      ->with('member', $request->session()->get('member', ''));
   }
 
   public function goRegister()
   {
-    return view('register', [
-      'title' => '注册'
-    ]);
+    return view('register')->with('title', '注册')
+      ->with('member', $request->session()->get('member', ''));
   }
 }

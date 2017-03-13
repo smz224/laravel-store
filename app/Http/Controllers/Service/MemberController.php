@@ -181,4 +181,20 @@ class MemberController extends Controller
       return $m3_result->toJson();
     }
   }
+
+  public function logout (Request $request) {
+    $member = $request->session()->get('member');
+    $m3_result = new M3Result;
+
+    if ($member) {
+      $request->session()->forget('member');
+      $m3_result->status = 0;
+      $m3_result->message = '注销成功';
+      return $m3_result->toJson();
+    } else {
+      $m3_result->status = 1;
+      $m3_result->message = '请先登录';
+      return $m3_result->toJson();
+    }
+  }
 }
