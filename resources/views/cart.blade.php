@@ -100,7 +100,16 @@
         }
       })
 
-      location.href = '/order_pay?cart_item_ids' + cart_item_ids_arr;
+      if (!cart_item_ids_arr.length) {
+        $('.bk_toptips').show();
+        $('.bk_toptips span').html('请选择要结算的商品');
+        setTimeout(function () {
+          $('.bk_toptips').hide();
+        }, 2000);
+        return;
+      }
+
+      location.href = '/order_pay/' + cart_item_ids_arr;
     }
   </script>
 @stop

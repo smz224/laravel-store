@@ -39,12 +39,12 @@
   <div class="weui_mask_transition" id="mask"></div>
   <div class="weui_actionsheet" id="weui_actionsheet">
     <div class="weui_actionsheet_menu">
+      <div class="weui_actionsheet_cell" onclick="onMenuItemClick(1)">书籍分类</div>
+      <div class="weui_actionsheet_cell" onclick="onMenuItemClick(2)">订单详情</div>
+      <div class="weui_actionsheet_cell" onclick="onMenuItemClick(3)">购物车</div>
       @if ($member)
         <div class="weui_actionsheet_cell" style="color: #FF4834;" onclick="_onLogout()">用户注销</div>
       @endif
-      <div class="weui_actionsheet_cell" onclick="onMenuItemClick(2)">选择套餐</div>
-      <div class="weui_actionsheet_cell" onclick="onMenuItemClick(3)">周边油站</div>
-      <div class="weui_actionsheet_cell" onclick="onMenuItemClick(4)">常见问题</div>
     </div>
     <div class="weui_actionsheet_action">
       <div class="weui_actionsheet_cell" id="actionsheet_cancel">取消</div>
@@ -83,11 +83,11 @@
     var weuiActionsheet = $('#weui_actionsheet');
     hideActionSheet(weuiActionsheet, mask);
     if (index == 1) {
-
+      location.href = '/category';
     } else if (index == 2) {
 
     } else if (index == 3) {
-
+      location.href = "/cart";
     } else {
       $('.bk_toptips').show();
       $('.bk_toptips span').html("敬请期待!");
