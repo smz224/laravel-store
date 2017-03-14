@@ -40,7 +40,7 @@
   <div class="weui_actionsheet" id="weui_actionsheet">
     <div class="weui_actionsheet_menu">
       <div class="weui_actionsheet_cell" onclick="onMenuItemClick(1)">书籍分类</div>
-      <div class="weui_actionsheet_cell" onclick="onMenuItemClick(2)">订单详情</div>
+      <div class="weui_actionsheet_cell" onclick="onMenuItemClick(2)">订单列表</div>
       <div class="weui_actionsheet_cell" onclick="onMenuItemClick(3)">购物车</div>
       @if ($member)
         <div class="weui_actionsheet_cell" style="color: #FF4834;" onclick="_onLogout()">用户注销</div>
@@ -85,7 +85,7 @@
     if (index == 1) {
       location.href = '/category';
     } else if (index == 2) {
-
+      location.href = '/order_list';
     } else if (index == 3) {
       location.href = "/cart";
     } else {

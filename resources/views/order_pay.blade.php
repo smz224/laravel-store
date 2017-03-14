@@ -57,4 +57,9 @@
 @stop
 
 @section('my-js')
+  <script type="text/javascript">
+    function _onPay() {
+      location.href = '/order_list'
+    }
+  </script>
 @stop

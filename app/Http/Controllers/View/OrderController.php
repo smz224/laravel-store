@@ -5,6 +5,9 @@ namespace App\Http\Controllers\View;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use App\Models\Orders;
+use App\Models\OrderList;
+use App\Models\Products;
 
 class OrderController extends Controller
 {
@@ -31,9 +34,26 @@ class OrderController extends Controller
       }
     }
 
-    return view('order_pay')->with('title', '账单支付')
+    return view('order_pay')->with('title', '订单支付')
       ->with('member', $member)
       ->with('pay_items', $pay_items_arr)
       ->with('total_price', $total_price);
+  }
+
+  public function toOrderList (Request $request) {
+    $member = $request->session()->get('member');
+    $orders = Orders::where('member_id', $member->id)->get();
+    foreach($orders as $order) {
+      $order_items = OrderList::where('order_id', $order->order_no)->get();
+      $order->order_items = $order_items;
+      foreach($order_items as $order_item) {
+        $order_item->product = Products::find($order_item->product_id);
+      }
+    }
+
+    return view('order_list')
+      ->with('title', '订单列表')
+      ->with('member', $member)
+      ->with('orders', $orders);
   }
 }

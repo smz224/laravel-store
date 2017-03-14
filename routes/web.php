@@ -28,6 +28,7 @@ Route::group(['prefix' => '/'], function () {
 
 Route::group(['prefix' => '/', 'middleware' => 'check.login'], function () {
   Route::get('order_pay/{product_id}', 'View\OrderController@toOrderPay');
+  Route::get('order_list', 'View\OrderController@toOrderList');
 });
 
 Route::group(['prefix' => 'service'], function () {
